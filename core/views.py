@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 import json
 import hashlib
-from distutils.log import INFO
+import re
 
 
 def get_hashkey(word):
@@ -9,6 +9,20 @@ def get_hashkey(word):
     md5.update(word.encode("utf8"))
     key = int(md5.hexdigest(),16)%1000          #hash key
     return key
+
+
+def get_price(kws):             #get low and high price in keywords and delete price from keywords
+    rexp = r'(\d+)-(\d+)'
+    pattern = re.compile(rexp)
+    match = pattern.search(kws)
+    if match:
+        price=list(match.groups())           #get first group 
+        low = int(price[0])       
+        high= int(price[1])  
+        kws = pattern.sub("",kws)            #delete all price , in fact , if u slice kws ,u will find "" in list
+        return kws , low , high
+    else:
+        return kws , -1 , 10e10
 
 #must be laid front before used
 def load_and_build(dic):
@@ -30,8 +44,8 @@ def load_and_build(dic):
     return words_hashl, inversed_filee, page_infoo
 
 
-#words_hashlist , inversed_file , page_info = load_and_build('F:/DataAdapter/Eclipse_workspace/_DataAdapter/SearchEngine_3+/')
-words_hashlist , inversed_file , page_info = load_and_build('C:\\Users\\mingq\\Desktop\\Temp\\webse_sample\\')    #test
+words_hashlist , inversed_file , page_info = load_and_build('F:/DataAdapter/Eclipse_workspace/_DataAdapter/SearchEngine_3+/')
+#words_hashlist , inversed_file , page_info = load_and_build('C:\\Users\\mingq\\Desktop\\Temp\\webse_sample\\')    #test
 
 
 def index(req) :
@@ -44,10 +58,11 @@ def search(req):
         #print(kw)
     else:
         kw=req.GET["wd"]
-    kw=kw.lower()          #normalization
-    kws=kw.split(" ")
+    kw=kw.lower()          #normalization    
+    kws , low , high = get_price(kw)
+    kws=kws.split(" ")    
         
-    flag=False ; result = []
+    flag=False ; result = []    
     if len(kws) == 1:           # single keyword search
         key= get_hashkey(kws[0])
                 
@@ -61,11 +76,15 @@ def search(req):
                              
                 for page in pages:
                     info=page_info[page["pid"]-1]
+                    
+                    price = 0 if info["price"] == "暂无" else int(info["price"]) 
+                    if price < low or price >high:         #filter by price
+                        continue
+                    
                     info["kf"]=1
                     info["f"]=page["f"]         #no problem although change var page_info
                     result.append(info)
-                #print(result)
-                    
+                #print(result)                
                 switcher = "visible" if len(result) != 0 else "hidden"          #just for using a if exp else b                
                 return render_to_response('result.html', {'item_list':result , "switcher":switcher , "switcher1": "hidden" if switcher == "visible" else "visible"})
                     
@@ -94,6 +113,11 @@ def search(req):
             #print(page_ff)
             for page in page_ff:            #page-->(pid,[kf,f])
                 info = page_info[page[0]-1]
+                
+                price = 0 if info["price"] == "暂无" else int(info["price"]) 
+                if price < low or price >high:         #filter by price
+                        continue
+                    
                 info["kf"]=page[1][0]
                 info["f"]=page[1][1]
                 result.append(info)

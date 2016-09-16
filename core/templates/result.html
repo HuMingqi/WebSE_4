@@ -55,7 +55,13 @@ body #s_tab *,body #s_kw_wrap,body #kw,body #su,body #s_btn_wr,body #about_is,#u
         </script>  </div>   <textarea id="s_sync_data" style="display:none;">        
     </textarea></div><div id="bottom_container" class="s-bottom-ctner"> <div class="ftCon-Wrapper"> <div class="qrcode-layer"> <div class="qrcode-item qrcode-item-1"> <div class="qrcode-img"></div><div class="qrcode-text"> <p><b>手机百度</b></p><p><span>快人一步</span></p> </div> </div><div class="qrcode-item qrcode-item-2"> <div class="qrcode-img"></div><div class="qrcode-text"> <p><b>百度糯米</b></p><p><span>我的生活</span></p> </div> </div> </div> <div class="no-qrcode-layer"> <div> <p class="lh"> <a class="sethome" href="//www.baidu.com/cache/sethelp/index.html" target="_blank"> 设为首页 </a> </p> <span class="copyright-text"><span>©2016&nbsp;Baidu&nbsp;</span><a href="//www.baidu.com/duty/" target="_blank">使用百度前必读</a>&nbsp;<a href="http://jianyi.baidu.com" target="_blank">意见反馈</a>&nbsp;<span>京ICP证030173号&nbsp;</span><img width="13" height="16" src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/copy_rignt_24.png"> </span> </div> <div class="recordcode"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001" target="_blank"><i></i>京公网安备11000002000001号</a></div> </div> </div></div><div class="s-isindex-wrap sui-wraper"><div class="sui-tips s-isindex-wrap sui-tips-exceedtipnews" style="display: none; width: auto;"><div class="sui-tips-arrow" style="left: 15px;"><em></em></div><div class="sui-tips-body">今天召唤我太多次啦，<br>明天再来调教小度吧！`(*∩_∩*)′</div></div></div></div> <div id="wrapper_wrapper" style="display: block;"><div id="container" class="container_s"><div class="head_nums_cont_outer OP_LOG"></div><script type="text/javascript">bds.comm.search_tool = {};bds.comm.search_tool.sl_lang = "";bds.comm.search_tool.st = "";bds.comm.search_tool.et = "";bds.comm.search_tool.stftype = "";bds.comm.search_tool.ft = "";bds.comm.search_tool.si = "";bds.comm.search_tool.exact = "";bds.comm.search_tool.oneDay = "1473765351";bds.comm.search_tool.oneWeek = "1473246951";bds.comm.search_tool.oneMonth = "1471173351";bds.comm.search_tool.oneYear = "1442229351";bds.comm.search_tool.thisDay = "1473696000";bds.comm.search_tool.thisWeek = "1473177600";bds.comm.search_tool.thisMonth = "1471104000";bds.comm.search_tool.thisYear = "1442160000";bds.comm.search_tool.actualResultLang = "cn";</script><div id="content_left"><div id="rs_top_new"></div><!--[bd_nocache_start]--><!--[bd_nocache_end]--><!--[bd_nocache_start]--><!--[bd_nocache_end]-->
 
-</br>
+
+<div class="result c-container " id="11" srcid="1599" tpl="se_com_default" data-click="{&quot;rsv_bdr&quot;:&quot;&quot;,&quot;p5&quot;:11}">
+    <h3 class="t"><b>
+    	共为您搜索到{{item_list|length}}条结果！
+	</h3>
+	</br>
+</div>
 
 {% for item in item_list %}
     <div style="visibility:{{switcher}}" class="result c-container " id="11" srcid="1599" tpl="se_com_default" data-click="{&quot;rsv_bdr&quot;:&quot;&quot;,&quot;p5&quot;:11}">
@@ -68,7 +74,7 @@ body #s_tab *,body #s_kw_wrap,body #kw,body #su,body #s_btn_wr,body #about_is,#u
 			'T':'1473851751',
 						'y':'FDBDCF9B'
 			 }" href = "{{ item.url }}" target="_blank">
-		{{ item.title }}&nbsp;&nbsp;&nbsp;&nbsp;售价：&nbsp;{{ item.price }}&nbsp;元&nbsp;&nbsp;关键字：&nbsp;{{ item.kf }}&nbsp;个&nbsp;&nbsp;词频：&nbsp;{{ item.f }}&nbsp;次
+		{{ item.title }}&nbsp;&nbsp;&nbsp;&nbsp;售价：&nbsp;{{ item.price }}&nbsp;元&nbsp;&nbsp;关键词：&nbsp;{{ item.kf }}&nbsp;个&nbsp;&nbsp;词频：&nbsp;{{ item.f }}&nbsp;次
 	</a>
 	</h3>
 	</br>
@@ -77,7 +83,7 @@ body #s_tab *,body #s_kw_wrap,body #kw,body #su,body #s_btn_wr,body #about_is,#u
 
 <div style="visibility:{{switcher1}}" class="result c-container " id="11" srcid="1599" tpl="se_com_default" data-click="{&quot;rsv_bdr&quot;:&quot;&quot;,&quot;p5&quot;:11}">
     <h3 class="t"><b>
-    	没有搜索结果，请换个关键字试试。如： Ochirly , 连衣裙 , 价格 100-200 , 纯棉 , 促销等服饰相关词汇。</b>
+    	没有搜索结果，请换个关键词试试。如： Ochirly , 杨埔 , 衬衫 , 连衣裙 , 围巾 , 牛仔裤 100-200 , 纯棉 , 促销等服饰相关词汇。多关键字搜索时请用空格隔开。</b>
 	</h3>
 	</br>
 </div>
